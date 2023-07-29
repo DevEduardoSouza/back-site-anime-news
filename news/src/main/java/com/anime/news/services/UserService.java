@@ -25,7 +25,7 @@ public class UserService {
 
     public UserEntity save (UserEntity user){
         user.setCreatedAt(new Date());
-        user.setRole(UserRole.READER);
+        user.setRole(UserRole.USER);
 
         UserEntity userNew = userRepository.saveAndFlush(user);
         return userNew;
