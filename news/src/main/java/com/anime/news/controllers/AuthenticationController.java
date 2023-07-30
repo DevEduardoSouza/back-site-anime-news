@@ -3,6 +3,7 @@ package com.anime.news.controllers;
 import com.anime.news.dtos.AuthenticationDTO;
 import com.anime.news.entities.UserEntity;
 import com.anime.news.repositories.UserRepository;
+import com.anime.news.security.TokenService;
 import jakarta.validation.Valid;
 import lombok.Data;
 import org.springframework.beans.BeanUtils;
@@ -22,16 +23,20 @@ public class AuthenticationController {
     @Autowired
     private AuthenticationManager authenticationManager;
 
-
     @Autowired
     private UserRepository userRepository;
+
+    @Autowired
+    private TokenService tokenService;
 
     @PostMapping("/login")
     public ResponseEntity login(@RequestBody @Valid AuthenticationDTO data){
         var usernamePassword = new UsernamePasswordAuthenticationToken(data.email(), data.password());
         var auth = authenticationManager.authenticate(usernamePassword);
 
-        return ResponseEntity.ok().build();
+        var token = tokenService.generateToken((UserEntity) auth.getPrincipal());
+
+        return ResponseEntity.ok(token);
     }
 
     @PostMapping("/register")
