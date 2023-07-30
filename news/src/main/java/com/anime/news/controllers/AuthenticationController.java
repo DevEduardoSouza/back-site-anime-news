@@ -1,6 +1,7 @@
 package com.anime.news.controllers;
 
 import com.anime.news.dtos.AuthenticationDTO;
+import com.anime.news.dtos.TokenDTO;
 import com.anime.news.entities.UserEntity;
 import com.anime.news.repositories.UserRepository;
 import com.anime.news.security.TokenService;
@@ -36,7 +37,7 @@ public class AuthenticationController {
 
         var token = tokenService.generateToken((UserEntity) auth.getPrincipal());
 
-        return ResponseEntity.ok(token);
+        return ResponseEntity.ok(new TokenDTO(token));
     }
 
     @PostMapping("/register")
