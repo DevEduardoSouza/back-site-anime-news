@@ -6,6 +6,8 @@ import com.anime.news.services.NewsService;
 import com.anime.news.services.StateService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
+import org.springframework.security.core.Authentication;
+import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
@@ -22,6 +24,12 @@ public class NewsController {
     @GetMapping("/")
     public List<NewsEntity> findAll(){
         return newsService.findAll();
+    }
+
+//    Retornar todas as postagem dos autores
+    @GetMapping("/{id}")
+    public List<NewsEntity> findAllNewsAuthor(@PathVariable("id") UUID id){
+        return newsService.findAllNewsAuthor(id);
     }
 
     @PostMapping("/")
