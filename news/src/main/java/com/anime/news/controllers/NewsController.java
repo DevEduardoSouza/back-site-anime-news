@@ -30,7 +30,7 @@ public class NewsController {
     }
 
     @PutMapping("/")
-    public NewsEntity update(@RequestBody NewsEntity news){
+    public ResponseEntity<?> update(@RequestBody NewsEntity news){
         return newsService.update(news);
     }
 

@@ -50,6 +50,7 @@ public class AuthenticationController {
 
         BeanUtils.copyProperties(data, newUser);
 
+        newUser.setActive(true);
         userRepository.save(newUser);
 
         return ResponseEntity.ok().build();
