@@ -1,7 +1,7 @@
 package com.anime.news.controllers;
 
-import com.anime.news.entities.TagEntity;
-import com.anime.news.services.TagService;
+import com.anime.news.entities.SourceEntity;
+import com.anime.news.services.SourceService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
@@ -10,24 +10,24 @@ import java.util.List;
 import java.util.UUID;
 
 @RestController
-@RequestMapping("/api/tag")
-public class TagController {
+@RequestMapping("/api/source")
+public class SourceController {
     @Autowired
-    private TagService tagService;
+    private SourceService tagService;
 
     @GetMapping("/")
-    public List<TagEntity> findAll() {
+    public List<SourceEntity> findAll() {
         return tagService.findAll();
     }
 
     @PostMapping("/")
-    public TagEntity save(@RequestBody TagEntity tag) {
-        return tagService.save(tag);
+    public SourceEntity save(@RequestBody SourceEntity source) {
+        return tagService.save(source);
     }
 
     @PutMapping("/")
-    public TagEntity update(@RequestBody TagEntity tag) {
-        return tagService.update(tag);
+    public SourceEntity update(@RequestBody SourceEntity source) {
+        return tagService.update(source);
     }
 
     @DeleteMapping("/{id}")
