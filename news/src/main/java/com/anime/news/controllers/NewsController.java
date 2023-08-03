@@ -17,16 +17,18 @@ import java.util.UUID;
 // ADMIN e STAFF -> post , USER -> GET
 @RestController
 @RequestMapping("/api/news")
+@CrossOrigin(origins = "*")
 public class NewsController {
     @Autowired
     private NewsService newsService;
 
+    // Retornar todas as postagem de todos os autores
     @GetMapping("/")
     public List<NewsEntity> findAll(){
         return newsService.findAll();
     }
 
-//    Retornar todas as postagem dos autores
+    //Retornar todas as postagem de um autor em específico
     @GetMapping("/{id}")
     public List<NewsEntity> findAllNewsAuthor(@PathVariable("id") UUID id){
         return newsService.findAllNewsAuthor(id);

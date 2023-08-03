@@ -15,6 +15,7 @@ public class NewsEntity extends AbstractEntity{
     private String title;
     private String content;
     private String active;
+    private String imageUrl;
 
     @ManyToOne
     @JoinColumn(name = "id_user")
